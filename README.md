@@ -2,6 +2,7 @@
 Shows a scatter plot between two data variables analyzing the current trends shaping people's lives such as Healthcare vs. Poverty or Smokers vs. Age.
 
 Using D3 techniques, creates a scatter plot that represents each state with circle elements. The scatter appears like the image shown here.
+![scatter](images/scatter.jpg)
 
 * Include state abbreviations in the circles.
 
