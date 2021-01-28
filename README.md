@@ -11,4 +11,7 @@ Using D3 techniques, creates a scatter plot that represents each state with circ
 
 # D3-trends-visualization. Adv Folder
 
+Following the same idea from the basic folder. 
+I created an interactive chart with animations. The results of this part will look similar to next gif image.
 
+![animated-scatter](images/scatter.gif)
