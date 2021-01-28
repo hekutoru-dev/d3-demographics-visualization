@@ -6,7 +6,8 @@ The data contains a series of feature stories about the health risks facing part
 The data set included with the assignment is based on 2014 ACS 1-year estimates:
 [https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml](https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml). The current data set incldes data on rates of income, obesity, poverty, etc. by state. MOE stands for "margin of error."
 
-Using D3 techniques, I created a scatter plot that represents each state with circle elements. The scatter appears like the image shown here.
+Using D3 techniques, I created a scatter plot that represents each state with circle elements. The scatter plot looks very similar to next image:
+
 ![scatter](images/scatter.png)
 
 * Include state abbreviations in the circles.
