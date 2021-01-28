@@ -10,9 +10,10 @@ Using D3 techniques, I created a scatter plot that represents each state with ci
 
 ![scatter](images/scatter.png)
 
+The plot:
 * Include state abbreviations in the circles.
 
-* Create and situate your axes and labels to the left and bottom of the chart.
+* Situates the axes and labels to the left and bottom of the chart.
 
 
 # D3-trends-visualization. Adv Folder
