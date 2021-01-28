@@ -71,20 +71,18 @@ d3.csv("assets/data/data.csv").then((data) => {
         .call(xAxis);
         
     chartGrp.append('g')          
-        .call(yAxis);
-
+        .call(yAxis);   
+    
+    // Create a group of circles. Append each one for each data State.
     let crcGrip = chartGrp.selectAll('circle')
-                            .data(data)
-                            .enter()
-                            .append('circle')
-                            .attr('cx', d => xScale(d[dataX]))
-                            .attr('cy', d => yScale(d[dataY]))
-                            .attr('r', circleProps.radius)
-                            .attr('stroke', circleProps.stroke)
-                            .attr('fill', circleProps.color)
-                            .attr('opacity', circleProps.opacity);
-    
-    
-    
+                        .data(data)
+                        .enter()
+                        .append('circle')
+                        .attr('cx', d => xScale(d[dataX]))
+                        .attr('cy', d => yScale(d[dataY]))
+                        .attr('r', circleProps.radius)
+                        .attr('stroke', circleProps.stroke)
+                        .attr('fill', circleProps.color)
+                        .attr('opacity', circleProps.opacity);
 
 });
