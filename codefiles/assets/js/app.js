@@ -43,7 +43,25 @@ d3.csv("assets/data/data.csv").then((data) => {
     getXMinMax();
     getYMinMax();
 
-    console.log(xMin);
-    console.log(yMin);
+    // Create Scales for X & Y from min & max values.
+    let xScale = d3.scaleLinear()
+                    .domain([xMin, xMax])
+                    .range([0, chartWidth]);
+    let yScale = d3.scaleLinear()
+                    .domain([yMin, yMax])
+                    .range([chartHeight, 0]);
+    
+    // Create & append the axes. Uses svg to draw them.
+    let xAxis = d3.axisBottom(xScale);
+    let yAxis = d3.axisLeft(yScale);
+
+    chartGrp.append('g')
+        .classed("x-axis", true)
+        .attr("transform", `translate(0, ${chartHeight})`)        
+        .call(xAxis);
+        
+    chartGrp.append('g')          
+        .call(yAxis);    
+    
 
 });
