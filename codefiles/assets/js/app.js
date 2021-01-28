@@ -3,7 +3,7 @@
 let margin = {
     top: 20,
     right: 40,
-    botton: 110,
+    bottom: 110,
     left: 100
 }
 
@@ -19,7 +19,17 @@ let svg = d3.select('#scatter')
             .attr('width', svgWidth);
 
 let chartGrp = svg.append('g')
-            .attr('transform', `translate(${margin.left}, ${margin.top})`);          
+            .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+
+// Set the circles properties. 
+let circleProps = {
+    radius : 8,
+    color : '#f95d6a',
+    stroke : '#000',
+    opacity : '.5',
+    fntSize: 10
+}
 
 // Import csv data.
 d3.csv("assets/data/data.csv").then((data) => {
@@ -61,7 +71,20 @@ d3.csv("assets/data/data.csv").then((data) => {
         .call(xAxis);
         
     chartGrp.append('g')          
-        .call(yAxis);    
+        .call(yAxis);
+
+    let crcGrip = chartGrp.selectAll('circle')
+                            .data(data)
+                            .enter()
+                            .append('circle')
+                            .attr('cx', d => xScale(d[dataX]))
+                            .attr('cy', d => yScale(d[dataY]))
+                            .attr('r', circleProps.radius)
+                            .attr('stroke', circleProps.stroke)
+                            .attr('fill', circleProps.color)
+                            .attr('opacity', circleProps.opacity);
+    
+    
     
 
 });
