@@ -15,3 +15,5 @@ Following the same idea from the basic folder.
 I created an interactive chart with animations. The results of this part will look similar to next gif image.
 
 ![animated-scatter](images/animated-scatter.gif)
+
+It includes additional labels in the scatter plot and gives them click events so that users can decide which data to display. The animation consists of transitions for the circles' locations changing the range of the axes.
