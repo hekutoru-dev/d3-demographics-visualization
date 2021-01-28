@@ -23,6 +23,27 @@ let chartGrp = svg.append('g')
 
 // Import csv data.
 d3.csv("assets/data/data.csv").then((data) => {
-    console.log(data);
+
+    let xMin, xMax, yMin, yMax;
+    // Set initial values to plot.
+    let dataX = "poverty";
+    let dataY = "healthcare";
+
+    // Get min & max values of the chosen data variables.
+    function getXMinMax() {
+        xMin = d3.min(data, d => +d[dataX]);
+        xMax = d3.max(data, d => +d[dataX]);
+    }
+    
+    function getYMinMax() {
+        yMin = d3.min(data, d => +d[dataY]);
+        yMax = d3.max(data, d => +d[dataY]);
+    }
+
+    getXMinMax();
+    getYMinMax();
+
+    console.log(xMin);
+    console.log(yMin);
 
 });
