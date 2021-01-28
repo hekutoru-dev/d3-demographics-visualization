@@ -84,5 +84,16 @@ d3.csv("assets/data/data.csv").then((data) => {
                         .attr('stroke', circleProps.stroke)
                         .attr('fill', circleProps.color)
                         .attr('opacity', circleProps.opacity);
+    
+    // Add text abbreviations to each data point. (State abbr)
+    let textGroup = chartGrp.append('text')   
+                        .selectAll('tspan')
+                        .data(data)
+                        .enter()
+                        .append('tspan')
+                        .attr('x', d => xScale(d[dataX] - 0.1))
+                        .attr('y', d => yScale(d[dataY] - 0.1))
+                        .attr('font-size', circleProps.fntSize)
+                        .text(d => d.abbr);
 
 });
