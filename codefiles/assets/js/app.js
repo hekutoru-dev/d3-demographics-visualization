@@ -71,10 +71,18 @@ d3.csv("assets/data/data.csv").then((data) => {
         .call(xAxis);
         
     chartGrp.append('g')          
-        .call(yAxis);   
+        .call(yAxis);
+    
+    // Create a function to show tooltips on each circle.
+    let tooltips = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([40, -60])
+                        .html(d => `${d.state}<br>${dataX}: ${d[dataX]}<br>${dataY}: ${d[dataY]}`);
+    // ADD tooltips.
+    chartGrp.call(tooltips);
     
     // Create a group of circles. Append each one for each data State.
-    let crcGrip = chartGrp.selectAll('circle')
+    let crcGrp = chartGrp.selectAll('circle')
                         .data(data)
                         .enter()
                         .append('circle')
@@ -84,6 +92,13 @@ d3.csv("assets/data/data.csv").then((data) => {
                         .attr('stroke', circleProps.stroke)
                         .attr('fill', circleProps.color)
                         .attr('opacity', circleProps.opacity);
+
+    crcGrp.on('mouseover', function(d) {
+        tooltips.show(d, this);
+    })
+    .on('mouseout', function(d) {
+        tooltips.hide(d);
+    })
     
     // Add text abbreviations to each data point. (State abbr)
     let textGroup = chartGrp.append('text')   
