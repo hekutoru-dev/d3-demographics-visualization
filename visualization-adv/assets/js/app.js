@@ -45,6 +45,20 @@ xNames.append('text')
         .attr("class", "aText active")        
         .text("Poverty (%)");
 
+xNames.append('text')
+        .attr("x", chartWidth / 2)
+        .attr("y", chartHeight + 75)
+        .attr("value", "income")
+        .attr("class", "aText inactive")        
+        .text("House Income (%)");
+
+xNames.append('text')
+        .attr("x", chartWidth / 2)
+        .attr("y", chartHeight + 100)
+        .attr("value", "age")
+        .attr("class", "aText inactive")        
+        .text("Age (median)");
+
 yNames.append('text')
         .attr("transform", "rotate(-90)")
         .attr("x", -chartWidth / 4)
@@ -52,6 +66,22 @@ yNames.append('text')
         .attr("value", "healthcare")
         .attr("class", "aText active")            
         .text("Healthcare (%)");
+
+yNames.append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -chartWidth / 4)
+        .attr("y", chartHeight / 2 - 270 )
+        .attr("value", "smokes")
+        .attr("class", "aText inactive")            
+        .text("Smokes (%)");
+
+yNames.append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -chartWidth / 4)
+        .attr("y", chartHeight / 2 - 250 )
+        .attr("value", "obesity")
+        .attr("class", "aText inactive")            
+        .text("Obesity (%)");
 
 // Import csv data.
 d3.csv("assets/data/data.csv").then((data) => {
