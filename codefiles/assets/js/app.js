@@ -31,6 +31,28 @@ let circleProps = {
     fntSize: 10
 }
 
+// Add axes names.
+chartGrp.append('g').attr('class', 'xText');
+chartGrp.append('g').attr('class', 'yText');
+
+let xNames = d3.select('.xText');
+let yNames = d3.select('.yText');
+
+xNames.append('text')
+        .attr("x", chartWidth / 2)
+        .attr("y", chartHeight + 50)
+        .attr("value", "poverty")
+        .attr("class", "aText active")        
+        .text("Poverty (%)");
+
+yNames.append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -chartWidth / 4)
+        .attr("y", chartHeight / 2 - 290 )
+        .attr("value", "healthcare")
+        .attr("class", "aText active")            
+        .text("Healthcare (%)");
+
 // Import csv data.
 d3.csv("assets/data/data.csv").then((data) => {
 
