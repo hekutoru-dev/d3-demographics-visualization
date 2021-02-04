@@ -41,46 +41,49 @@ let yNames = d3.select('.yText');
 xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 50)
+        .attr("axis", "x")
         .attr("value", "poverty")
-        .attr("class", "axText active")        
+        .attr("class", "axText active x ")        
         .text("Poverty (%)");
 
 xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 75)
+        .attr("axis", "x")
         .attr("value", "income")
-        .attr("class", "axText inactive")        
+        .attr("class", "axText inactive x")        
         .text("House Income (%)");
 
 xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 100)
+        .attr("axis", "x")
         .attr("value", "age")
-        .attr("class", "axText inactive")        
+        .attr("class", "axText inactive x")        
         .text("Age (median)");
 
-yNames.append('text')
-        .attr("transform", "rotate(-90)")
+yNames.append('text').attr("transform", "rotate(-90)")
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 290 )
+        .attr("axis", "y")
         .attr("value", "healthcare")
-        .attr("class", "axText active")            
+        .attr("class", "axText active y")            
         .text("Healthcare (%)");
 
-yNames.append('text')
-        .attr("transform", "rotate(-90)")
+yNames.append('text').attr("transform", "rotate(-90)")
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 270 )
+        .attr("axis", "y")
         .attr("value", "smokes")
-        .attr("class", "axText inactive")            
+        .attr("class", "axText inactive y")            
         .text("Smokes (%)");
 
-yNames.append('text')
-        .attr("transform", "rotate(-90)")
+yNames.append('text').attr("transform", "rotate(-90)")
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 250 )
+        .attr("axis", "y")
         .attr("value", "obesity")
-        .attr("class", "axText inactive")            
+        .attr("class", "axText inactive y")            
         .text("Obesity (%)");
 
 // Import csv data.
@@ -135,8 +138,7 @@ d3.csv("assets/data/data.csv").then((data) => {
     
     // Create a group of circles. Append each one for each data State.
     let crcGrp = chartGrp.selectAll('circle')
-                        .data(data)
-                        .enter()
+                        .data(data).enter()
                         .append('circle')
                         .attr('cx', d => xScale(d[dataX]))
                         .attr('cy', d => yScale(d[dataY]))
@@ -155,8 +157,7 @@ d3.csv("assets/data/data.csv").then((data) => {
     // Add text abbreviations to each data point. (State abbr)
     let textGroup = chartGrp.append('text')   
                         .selectAll('tspan')
-                        .data(data)
-                        .enter()
+                        .data(data).enter()
                         .append('tspan')
                         .attr('x', d => xScale(d[dataX] - 0.1))
                         .attr('y', d => yScale(d[dataY] - 0.1))
@@ -165,27 +166,25 @@ d3.csv("assets/data/data.csv").then((data) => {
     
 
     // Change the appereance of axes when one is clicked.
-    function changeAxes () {
+    function changeAxes (axValue, axis) {
 
+        // Set selected text to active.
+        axValue.classed("inactive", false).classed("active", true);
     }
                     
     // Use the given axText class to the axes labes to select 
     // different data variable to modify the scatter plot.
     d3.selectAll('.axText').on('click', function() {
 
-        let ax = d3.select(this);
-        console.log(ax);
+        let label = d3.select(this);        
 
-        if (ax.classed("inactive")) {
-            // Get the property value of the selected axis.
-            let value = ax.attr("value")
-            console.log(value);
-
+        if (label.classed("inactive")) {            
+            let value = label.attr("value");   // Get the property value of the selected variable.
+            let ax = label.attr("axis");     // Get the axis of the selected text.
 
             // Change axes class and appereance.
-            changeAxes();            
-        }
-        
+            changeAxes(label, ax);
+        } 
 
     });
 
