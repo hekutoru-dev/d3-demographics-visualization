@@ -42,21 +42,21 @@ xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 50)
         .attr("value", "poverty")
-        .attr("class", "aText active")        
+        .attr("class", "axText active")        
         .text("Poverty (%)");
 
 xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 75)
         .attr("value", "income")
-        .attr("class", "aText inactive")        
+        .attr("class", "axText inactive")        
         .text("House Income (%)");
 
 xNames.append('text')
         .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 100)
         .attr("value", "age")
-        .attr("class", "aText inactive")        
+        .attr("class", "axText inactive")        
         .text("Age (median)");
 
 yNames.append('text')
@@ -64,7 +64,7 @@ yNames.append('text')
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 290 )
         .attr("value", "healthcare")
-        .attr("class", "aText active")            
+        .attr("class", "axText active")            
         .text("Healthcare (%)");
 
 yNames.append('text')
@@ -72,7 +72,7 @@ yNames.append('text')
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 270 )
         .attr("value", "smokes")
-        .attr("class", "aText inactive")            
+        .attr("class", "axText inactive")            
         .text("Smokes (%)");
 
 yNames.append('text')
@@ -80,7 +80,7 @@ yNames.append('text')
         .attr("x", -chartWidth / 4)
         .attr("y", chartHeight / 2 - 250 )
         .attr("value", "obesity")
-        .attr("class", "aText inactive")            
+        .attr("class", "axText inactive")            
         .text("Obesity (%)");
 
 // Import csv data.
@@ -162,5 +162,30 @@ d3.csv("assets/data/data.csv").then((data) => {
                         .attr('y', d => yScale(d[dataY] - 0.1))
                         .attr('font-size', circleProps.fntSize)
                         .text(d => d.abbr);
+    
+
+    // Change the appereance of axes when one is clicked.
+    function changeAxes () {
+
+    }
+                    
+    // Use the given axText class to the axes labes to select 
+    // different data variable to modify the scatter plot.
+    d3.selectAll('.axText').on('click', function() {
+
+        let ax = d3.select(this);
+        console.log(ax);
+
+        if (ax.classed("inactive")) {
+            // Get the property value of the selected axis.
+            let value = ax.attr("value")
+
+
+            // Change axes class and appereance.
+            changeAxes();            
+        }
+        
+
+    });
 
 });
