@@ -199,7 +199,7 @@ d3.csv("assets/data/data.csv").then((data) => {
                 xScale.domain([xMin, xMax]);
 
                 // Update the x axis with trasition.
-                chartGrp.select('.x-axis').transition().duration(300).call(xAxis);
+                chartGrp.select('.x-axis').transition().duration(1500).call(xAxis);
                 console.log(xMin, xMax);
 
             } else { // Selected label is from Y axis.         
@@ -209,9 +209,9 @@ d3.csv("assets/data/data.csv").then((data) => {
                 yScale.domain([yMin, yMax]);
 
                 // Update the x axis with trasition.
-                chartGrp.select('.y-axis').transition().duration(300).call(yAxis);
+                chartGrp.select('.y-axis').transition().duration(1500).call(yAxis);
 
-            }
+            } // ----- END if statment that checks which axis is selected.
 
             // Change axes class and appereance.
             changeAxes(label, ax);
