@@ -121,11 +121,12 @@ d3.csv("assets/data/data.csv").then((data) => {
     let yAxis = d3.axisLeft(yScale);
 
     chartGrp.append('g')
-        .classed("x-axis", true)
+        .attr("class", "x-axis")      
         .attr("transform", `translate(0, ${chartHeight})`)        
         .call(xAxis);
         
-    chartGrp.append('g')          
+    chartGrp.append('g')
+        .attr("class", "y-axis")
         .call(yAxis);
     
     // Create a function to show tooltips on each circle.
@@ -177,8 +178,9 @@ d3.csv("assets/data/data.csv").then((data) => {
 
         // Set selected text to active.
         axValue.classed("inactive", false).classed("active", true);
-    }
-                    
+    } // ----- END changeAxes() function.
+
+
     // Use the given axText class to the axes labes to select 
     // different data variable to modify the scatter plot.
     d3.selectAll('.axText').on('click', function() {
@@ -189,10 +191,31 @@ d3.csv("assets/data/data.csv").then((data) => {
             let value = label.attr("value");   // Get the property value of the selected variable.
             let ax = label.attr("axis");     // Get the axis of the selected text.
 
+            // Selected label is from X axis.
+            if (ax === 'x') {
+                // Change the 'initial' value X to the selected label.
+                dataX = value;                
+                getXMinMax();
+                xScale.domain([xMin, xMax]);
+
+                // Update the x axis with trasition.
+                chartGrp.select('.x-axis').transition().duration(300).call(xAxis);
+                console.log(xMin, xMax);
+
+            } else { // Selected label is from Y axis.         
+                // Change the 'initial' value Y to the selected label.
+                dataY = value;                
+                getYMinMax();
+                yScale.domain([yMin, yMax]);
+
+                // Update the x axis with trasition.
+                chartGrp.select('.y-axis').transition().duration(300).call(yAxis);
+
+            }
+
             // Change axes class and appereance.
             changeAxes(label, ax);
         } 
 
-    });
-
-});
+    }); // ----- END on click event on labels with D3.
+}); // ----- END reading data and visualizations using D3.
