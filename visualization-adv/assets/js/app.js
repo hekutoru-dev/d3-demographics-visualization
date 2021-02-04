@@ -168,6 +168,12 @@ d3.csv("assets/data/data.csv").then((data) => {
     // Change the appereance of axes when one is clicked.
     function changeAxes (axValue, axis) {
 
+        // Change class of the not selected labels - from active to inactive.
+        d3.selectAll(".axText")
+            .filter(".active")
+            .classed("active", false)
+            .classed("inactive", true);
+
         // Set selected text to active.
         axValue.classed("inactive", false).classed("active", true);
     }
