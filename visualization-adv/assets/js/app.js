@@ -179,6 +179,7 @@ d3.csv("assets/data/data.csv").then((data) => {
         if (ax.classed("inactive")) {
             // Get the property value of the selected axis.
             let value = ax.attr("value")
+            console.log(value);
 
 
             // Change axes class and appereance.
