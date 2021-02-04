@@ -171,6 +171,7 @@ d3.csv("assets/data/data.csv").then((data) => {
         // Change class of the not selected labels - from active to inactive.
         d3.selectAll(".axText")
             .filter(".active")
+            .filter("." + axis)
             .classed("active", false)
             .classed("inactive", true);
 
